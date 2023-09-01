@@ -1,0 +1,52 @@
+{% extends "socialnetwork/base.html" %}
+
+{% block nameLink_block %}
+    <a id='id_nav_profile' href="{% url 'view-profile' request.user.id %}" class="nameLink">
+        <font size="4">{{ user.first_name }} {{ user.last_name }}</font>
+    </a>
+{% endblock %}
+
+{% block globalLink_block %}
+    <a id='id_nav_global_stream' href="{% url 'home' %}" class="globalLink" style="position: absolute; top: 100px; right: 180px;">
+        <font size="4">Global</font>
+    </a>
+{% endblock %}
+
+{% block followerLink_block %}
+    <a id='id_nav_follower_stream' href="{% url 'follower-stream' %}" class="followerLink" style="position: absolute; top: 100px; right: 90px;">
+        <font size="4">Follower</font>
+    </a>
+{% endblock %}
+
+{% block logoutLink_block %}
+    <a id='id_nav_logout' href="{% url 'logout' %}" class="logoutLink">
+        <font size="4">Logout</font>
+    </a>
+{% endblock %}
+
+{% if error %}
+    <div> {{ error }} </div>
+{% endif %}
+
+{% block content %}
+
+    <div style="text-align: center;">
+        <form action="{% url 'add-post' %}" method="post">
+            <label>New Post: </label>
+            <input id="id_post_input_text" type="text" name="newpost" autofocus>
+            <button id='id_post_button' type="submit" value="submit" style="font-size: 16px;">Submit</button>
+            {% csrf_token %}
+        </form>
+    </div>
+
+    <div id="posts_go_here"></div>
+
+    <script>
+        // Call getList() as soon as page is finished loading to display the todolist
+        window.onload = loadPosts;
+    
+        // ... also call getList every 5 seconds hereafter to update the list
+        window.setInterval(loadPosts, 5000);
+    </script>
+
+{% endblock %}

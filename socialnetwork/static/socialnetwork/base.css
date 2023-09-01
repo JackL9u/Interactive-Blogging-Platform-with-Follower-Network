@@ -1,0 +1,153 @@
+.topHeading {
+    display: flex;
+    font-size: xx-large;
+    font-weight: bold;
+    font-family: sans-serif;
+    align-items: center;
+    background-color: rgb(0, 153, 255);
+    height: 130px;
+    width: 100%;
+  }
+
+  .centered-text {
+    text-align: left;
+    color: black;
+  }
+  
+  .nameLink {
+    position: absolute;
+    top: 40px;
+    right: 20px;
+    text-decoration: underline;
+  }
+
+  .registerLoginLink {
+    position: absolute;
+    top: 100px;
+    right: 50px;
+    text-decoration: underline;
+  }
+
+  .globalLink {
+    position: absolute;
+    top: 100px;
+    right: 200px !important;
+    text-decoration: underline;
+  }
+
+  .followerLink {
+    position: absolute;
+    top: 100px;
+    right: 200px;
+    text-decoration: underline;
+  }
+
+  .logoutLink {
+    position: absolute;
+    top: 100px;
+    right: 10px;
+    text-decoration: underline;
+  }
+
+  .pageName {
+    color:black;
+    text-align: center;
+    font-weight: bold;
+    font-size: x-large;
+    font-family: sans-serif;
+    padding: 25px 50px;
+}
+
+
+.user-info {
+    text-align: right;
+    font-family: sans-serif; 
+    padding-right: 10px;
+    font-size: x-large;
+}
+
+.message {
+    color:blue;
+    text-align: center;
+    font-weight: bold;
+    font-size: x-large;
+    font-family: sans-serif;
+    padding: 25px 50px;
+}
+
+.message-box {
+  border: 1px solid black;
+  padding: 10px;
+  width: 200px;
+  height: 100px;
+}
+
+.search-bar {
+    text-align: center;
+    padding: 25px 50px;
+}
+
+.content {
+    margin-left: auto;
+    margin-right: auto;
+    width: 70%;
+    font-family: sans-serif;
+    font-size: x-large;
+    padding: 25px 50px;
+}
+
+.error {
+  font-size: x-large;
+  color:red;
+}
+
+.list {
+    padding: 3px;
+}
+
+.list-link {
+    padding: 5px;
+}
+
+.list-link:hover {
+     background-color:lightgray;
+}
+
+th {
+    font-weight: normal;
+    text-align: left;
+}
+
+a {
+     text-decoration: none;
+     color:black;
+}
+
+button {
+    font-size: x-large;
+    padding: 3px;
+}
+
+input {
+    font-size: x-large;
+}
+
+div, form {
+    padding: 4px;
+}
+
+
+.navlink {
+    background-color: lightgray;
+}
+
+.letter {
+    padding: 3px;
+    font-family: sans-serif;
+    font-size: x-large;
+
+}
+
+.letter:hover {
+     background-color:lightgray;
+}

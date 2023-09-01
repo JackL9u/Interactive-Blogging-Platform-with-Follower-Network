@@ -1,0 +1,60 @@
+{% extends "socialnetwork/base.html" %}
+
+{% block nameLink_block %}
+    <a id='id_nav_profile' href="{% url 'view-profile' request.user.id %}" class="nameLink">
+        <font size="4">{{ user.first_name }} {{ user.last_name }}</font>
+    </a>
+{% endblock %}
+
+{% block globalLink_block %}
+<a id='id_nav_global_stream' href="{% url 'home' %}" class="globalLink" style="position: absolute; top: 100px; right: 180px;">
+        <font size="4">Global</font>
+    </a>
+{% endblock %}
+
+{% block followerLink_block %}
+<a id='id_nav_follower_stream' href="{% url 'follower-stream' %}" class="followerLink" style="position: absolute; top: 100px; right: 90px;">
+    <font size="4">Follower</font>
+    </a>
+{% endblock %}
+
+{% block logoutLink_block %}
+<a id='id_nav_logout' href="{% url 'logout' %}" class="logoutLink">
+    <font size="4">Logout</font>
+    </a>
+{% endblock %}
+
+{% block content %}
+    <div style="text-align:center;">
+        {% load static %}
+        
+        {% if profile.profile_picture %}
+            <img id='id_user_picture' src="{% url 'photo' profile.user.id %}" alt="Profile Picture" style="display:inline-block;width: 15%; height: 15%;">
+        {% else %}
+            <img id='id_user_picture' src="{% static 'images/default.jpg' %}" alt="image_description" style="display:inline-block;width: 15%; height: 15%;">
+        {% endif %}
+    </div>
+
+    <div style="text-align: center;">
+        <textarea id='id_user_bio' rows="8" cols="50" readonly>{{ profile.bio }}</textarea>
+    </div>
+
+    {% if profile in self_profile.followed_users.all %}        
+        <form action="{% url 'unfollow' profile.user.id %}" method="post">
+            <label for="id_unfollow"></label><br>
+            <div style="text-align: center;">
+                <button id="id_unfollow" type="submit" style="text-align: center;">Unfollow</button>
+            </div>
+            {% csrf_token %}
+        </form>
+    {% else %}
+        <form action="{% url 'follow' profile.user.id %}" method="post">
+            <label for="id_follow"></label><br>
+            <div style="text-align: center;">
+                <button id="id_follow" type="submit" style="text-align: center;">Follow</button>
+            </div>
+            {% csrf_token %}
+        </form>
+    {% endif %}
+
+{% endblock %}

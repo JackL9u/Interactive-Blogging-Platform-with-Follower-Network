@@ -1,0 +1,86 @@
+{% extends "socialnetwork/base.html" %}
+
+{% block nameLink_block %}
+    <a id='id_nav_profile' href="{% url 'view-profile' request.user.id %}" class="nameLink">
+        <font size="4">{{ user.first_name }} {{ user.last_name }}</font>
+    </a>
+{% endblock %}
+
+{% block globalLink_block %}
+<a id='id_nav_global_stream' href="{% url 'home' %}" class="globalLink" style="position: absolute; top: 100px; right: 180px;">
+        <font size="4">Global</font>
+    </a>
+{% endblock %}
+
+{% block followerLink_block %}
+<a id='id_nav_follower_stream' href="{% url 'follower-stream' %}" class="followerLink" style="position: absolute; top: 100px; right: 90px;">
+    <font size="4">Follower</font>
+    </a>
+{% endblock %}
+
+{% block logoutLink_block %}
+    <a id='id_nav_logout' href="{% url 'logout' %}" class="logoutLink">
+        <font size="4">Logout</font>
+    </a>
+{% endblock %}
+
+{% block content %}
+    <div style="text-align:center;">
+        {% load static %}
+        
+        {% if profile.profile_picture %}
+            <img id='id_user_picture' src="{% url 'photo' request.user.id %}" alt="Profile Picture" style="display:inline-block;width: 15%; height: 15%;">
+        {% else %}
+            <img id='id_user_picture' src="{% static 'images/default.jpg' %}" alt="image_description" style="display:inline-block;width: 15%; height: 15%;">
+        {% endif %}
+    </div>
+
+    <!-- <div style="text-align: center;">
+        <form enctype="multipart/form-data" action="{% url 'edit-info' %}" method="post">
+            <table>
+                {% for field in form.visible_fields %}
+                    <tr>
+                        <td>{{field.label_tag}}</td>
+                        <td>{{field}}</td>
+                        <td class="error">
+                            {% for error in field.errors %} {{error}} {% endfor %}
+                        </td>
+                    </tr>
+                {% endfor %}
+                <tr><td colspan="3"><button id="id_update_profile_button" type="submit" value="Submit"></td></tr>
+            </table>
+            {% csrf_token %}
+        </form>
+    </div> -->
+    <div>
+        <form enctype="multipart/form-data" action="{% url 'edit-info' %}" method="post">
+            {% csrf_token %}
+        
+            <div style="margin-left: 600px;">
+                <label for="id_bio_input_text">Short Bio:</label>
+                <textarea id="id_bio_input_text" name="bio" rows="4" cols="50" maxlength="200" required style="font-size: 18px;">{{ profile.bio }}</textarea>
+            </div>
+        
+            <div style="margin-left: 600px;">
+                <label for="id_profile_picture">Profile Picture:</label>
+                <input id="id_profile_picture" type="file" name="profile_picture" accept="image/*" required>
+            </div>
+            
+            <div style="text-align: center;">
+                <button id="id_update_profile_button" type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+
+    <div style="margin-left: 600px;">
+        You are following:
+        <ul>
+            {% for people in self_profile.followed_users.all %}
+                <li>
+                    <a id="id_profile_link_{{ people.user.username }}" href="{% url 'view-profile' people.userID %}">{{ people.user.first_name }} {{ people.user.last_name }}<a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+{% endblock %}
