@@ -1,4 +1,4 @@
-# socialnetwork
+# Interactive-Blogging-Platform-with-Follower-Network
 A blog site implemented with Python, HTML, and JavaScript, powered by Django
 
 To launch the blog site, clone the repository and run the following commands:
